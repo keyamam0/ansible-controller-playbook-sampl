@@ -6,3 +6,6 @@
 ```
 pip3 install awxkit
 ```
+
+Controller用のPlaybookモジュールは以下を参照ください
+https://console.redhat.com/ansible/automation-hub/repo/published/ansible/controller/docs/
