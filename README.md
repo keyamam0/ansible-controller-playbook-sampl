@@ -1,6 +1,6 @@
 # ansible-controller-playbook-sampl
 
-このサンプルは、Ansible ControllerのTemplateに設定して使うことを想定しています
+このサンプルは、Ansible ControllerのProjectから直接参照し、Templateで使用することを想定しています
 
 事前に、Ansible Controllerへのawxkitのインストールが必要です
 ```
