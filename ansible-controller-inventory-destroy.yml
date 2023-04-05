@@ -1,0 +1,19 @@
+- name: Destroy inventory
+  hosts: control
+
+  vars:
+    #ansible_host: xxxxx
+    #controller_user: admin
+    #controller_pass: xxxxx
+    #target_inventory: 'Copy Foo Inventory'
+
+  tasks:
+    - name: Destroy inventory
+      ansible.controller.inventory:
+        controller_host: "https://{{ ansible_host }}"
+        controller_username: "{{ controller_user }}"
+        controller_password: "{{ controller_pass }}"
+        name: "{{ target_inventory }}"
+        organization: Default
+        state: absent
+

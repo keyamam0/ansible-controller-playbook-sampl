@@ -1,0 +1,27 @@
+- name: Export inventory
+  hosts: control
+
+  vars:
+    #ansible_host: student1.vdbwr.example.opentlc.com
+    #controller_user: admin
+    #controller_pass: 4rttahkx
+    #export_inventory_name: 'Copy Foo Inventory'
+    #export_file: /home/ec2-user/inventory.json
+
+  tasks:
+    - name: Export all inventories
+      ansible.controller.export:
+        controller_host: "https://{{ ansible_host }}"
+        controller_username: "{{ controller_user }}"
+        controller_password: "{{ controller_pass }}"
+        inventory: "{{ export_inventory_name }}"
+      register: export_output
+
+    - name: Debug export output
+      debug:
+        var: export_output
+
+    - name: Copy to disk    
+      copy:
+        content: "{{ export_output.assets }}"
+        dest: "{{ export_file }}"

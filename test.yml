@@ -1,0 +1,41 @@
+- name: Copy inventory
+  hosts: control
+
+  vars:
+    ansible_host: student1.vdbwr.example.opentlc.com
+    controller_user: admin
+    controller_pass: xxx
+  
+  tasks:
+    - name: Print message
+      debug:
+        msg: "Hello, World!"
+
+    - name: Copy inventory
+      ansible.controller.inventory:
+        controller_host: "https://{{ ansible_host }}"
+        controller_username: "{{ controller_user }}"
+        controller_password: "{{ controller_pass }}"
+        name: Copy Foo Inventory
+        copy_from: Workshop Inventory
+        description: "Our Foo Cloud Servers"
+        organization: Default
+        state: present
+
+
+    - name: Export all inventories
+      ansible.controller.export:
+        controller_host: "https://{{ ansible_host }}"
+        controller_username: "{{ controller_user }}"
+        controller_password: "{{ controller_pass }}"
+        inventory: 'Copy Foo Inventory'
+      register: export_output
+
+    - name: Debug export output
+      debug:
+        var: export_output
+
+    #- name: Copy to disk    
+    #  copy:
+    #    content: "{{ export_output.assets }}"
+    #    dest: "inventory2.json"

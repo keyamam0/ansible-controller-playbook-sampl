@@ -1,0 +1,8 @@
+collections:
+  - name: ansible.controller.inventory
+  - name: ansible.controller.export
+  - name: community.general
+    version: latest
+    
+
+

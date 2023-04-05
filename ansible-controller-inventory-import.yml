@@ -1,0 +1,22 @@
+- name: Import resources
+  hosts: control
+
+  vars:
+    #ansible_host: xxx
+    #controller_user: xxx
+    #controller_pass: xxx
+    #import_file: /home/ec2-user/inventory2.json
+
+  tasks:
+
+    - name: fetch
+      fetch:
+        src: "{{ import_file }}"
+        dest: /runner/project/
+
+    - name: import inventory
+      ansible.controller.import:
+        controller_host: "https://{{ ansible_host }}"
+        controller_username: "{{ controller_user }}"
+        controller_password: "{{ controller_pass }}"
+        assets: "{{ lookup('file', '/runner/project/ansible-1' + import_file)  | from_json() }}"
