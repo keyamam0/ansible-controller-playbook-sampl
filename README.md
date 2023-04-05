@@ -4,5 +4,5 @@
 
 事前に、Ansible Controllerへのawxkitのインストールが必要です
 ```
-pip3 _install awxkit_
+pip3 install awxkit
 ```
